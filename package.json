@@ -1,0 +1,15 @@
+{
+  "name": "crud-mdb",
+  "version": "1.0.0",
+  "description": "chumma",
+  "main": "index.js",
+  "scripts": {
+    "test": "onnum illaa"
+  },
+  "author": "akshay",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1"
+  }
+}
