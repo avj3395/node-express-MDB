@@ -2,14 +2,19 @@
   "name": "crud-mdb",
   "version": "1.0.0",
   "description": "chumma",
-  "main": "index.js",
+  "main": "server.js",
+  "type": "module",
   "scripts": {
-    "test": "onnum illaa"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "author": "akshay",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "mongoose": "^6.4.4",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.19"
   }
 }
