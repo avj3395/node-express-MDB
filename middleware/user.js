@@ -35,3 +35,12 @@ export const validateLogin = async (req, res, next) => {
     });
   }
 };
+
+export const verifyUser = async (req, res, next) => {
+  if (req.headers.authorization) {
+    return next();
+  }
+  return res.status(400).send({
+    message: "unauthorized.....",
+  });
+};

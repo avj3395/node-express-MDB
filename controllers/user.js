@@ -72,3 +72,64 @@ export const loginUser = async (req, res) => {
     res.status(409).json({ message: error.message });
   }
 };
+
+export const getUser = async (req, res) => {
+  const headerAuth = req.headers.authorization.split("Bearer ");
+  const token = headerAuth[1];
+  const decodedData = jwt.verify(token, "avj3395");
+
+  if (decodedData.email) {
+    try {
+      const user = await userData.findOne({ email: decodedData.email });
+      if (user) {
+        const result = {
+          data: {
+            name: user.name,
+            email: user.email,
+            id: user._id,
+          },
+        };
+        return res.status(200).send(result);
+      }
+    } catch (error) {
+      res.status(409).json({ message: error.message });
+    }
+  }
+
+  return res.status(409).json({
+    message: "Something error please try again later ....",
+  });
+};
+
+export const updateUser = async (req, res) => {
+  const { name, mobile_number, address, city, place } = req.body;
+  const headerAuth = req.headers.authorization.split("Bearer ");
+  const token = headerAuth[1];
+  const decodedData = jwt.verify(token, "avj3395");
+  if (decodedData.email) {
+    console.log("ACCESS DATA======", decodedData);
+    const updateData = {
+      $set: {
+        name: name,
+        mobile_number: mobile_number,
+        address: address,
+        city: city,
+        place: place,
+      },
+    };
+    try {
+      const user = await userData.findOneAndUpdate(
+        { email: decodedData.email },
+        updateData,
+        { new: true }
+      );
+
+      return res.status(200).send(user);
+    } catch (error) {
+      res.status(409).json({ message: error.message });
+    }
+  }
+  return res.status(409).json({
+    message: "update user api in progress ....",
+  });
+};

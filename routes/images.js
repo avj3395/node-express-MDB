@@ -10,7 +10,6 @@ const storage = multer.diskStorage({
     callBack(null, "./uploads");
   },
   filename: (req, file, callBack) => {
-    console.log("MULTER== filename=====", file);
     callBack(
       null,
       file.originalname + "-" + Date.now() + path.extname(file.originalname)
