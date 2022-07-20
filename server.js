@@ -9,6 +9,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/image", imageRoutes);
+app.use("/uploads", express.static("uploads"));
 
 app.listen(5000, () => {
   console.log("server is running on 5000...");

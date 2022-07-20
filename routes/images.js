@@ -1,5 +1,5 @@
 import express from "express";
-import { getImage, uploadImage } from "../controllers/images.js";
+import { uploadImage } from "../controllers/images.js";
 
 import multer from "multer";
 import path from "path";
@@ -23,6 +23,5 @@ const upload = multer({
 });
 
 router.post("/upload", upload.single("myFile"), uploadImage);
-router.get("/get-image", getImage);
 
 export default router;
