@@ -1,14 +1,14 @@
 import express from "express";
 import mongoose from "mongoose";
+import bodyParser from "body-parser";
 import imageRoutes from "./routes/images.js";
+import userRoutes from "./routes/user.js";
 
 const app = express();
-
-app.get("/", (req, res) => {
-  res.send("welcome to my server");
-});
+app.use(bodyParser.json());
 
 app.use("/image", imageRoutes);
+app.use("/api", userRoutes);
 app.use("/uploads", express.static("uploads"));
 
 app.listen(5000, () => {
